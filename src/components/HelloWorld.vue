@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { menus, getList, Menu } from '../examples/example10';
+import { isDone } from '../examples/knowledeg1';
 </script>
 
 <template>
   <div>
-    <Menu ref="menus" @on-click="getList"/>
-    <Global />
+    HelloWorld
   </div>
 </template>
 
