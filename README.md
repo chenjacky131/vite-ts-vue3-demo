@@ -1,72 +1,16 @@
-# Vue 3 + Vite
+# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-##### ajax
-```
- import axios from '@/utils/axios.js';
- const getData = () => { //  取消请求的实例方法
-   const source = axios.cancelSource();
-   axios.get('/api/geoserver/tiger/ows', {
-     "service": "WFS",
-     "version": "1.0.0",
-     "request": "GetFeature",
-     "typeName": "tiger:giant_polygon",
-     "maxFeatures": "50",
-     "outputFormat": "application/json"
-   },{
-     "cancelToken": source.token
-   }).then(res => {
-     console.log('返回的数据:', res)
-   }).catch(err => {
-     console.error(err)
-   })
-   source.cancel('取消请求')
- }
-
-const getData = () => { //  post请求格式的示例
-  axios.post('/api/geoserver/tiger/ows', {
-    "service": "WFS",
-    "version": "1.0.0",
-    "request": "GetFeature",
-    "typeName": "tiger:giant_polygon",
-    "maxFeatures": "50",
-    "outputFormat": "application/json"
-  },{
-    "dataType": "qs"  //  默认为json格式
-  }).then(res => {
-    console.log('返回的数据:', res)
-  }).catch(err => {
-    console.error(err)
-  })
-}
-```
-##### 读取配置文件
-```
-import.meta.env
-```
-
-##### 状态的管理
-```
-import {useStore} from 'vuex';
-const store = useStore();
-console.log(store.state.name) //  get state
-store.commit('SET_NAME', 'jack')  //  set state
-console.log(store.getters.hi) //  get getters
-store.dispatch('GET_NAME', {  //  dispatch action
-  name: 'jack2'
-})
-console.log(store.state.a.sex)  //  get state of module a
-store.commit('SET_SEX', 'wowen')  //  set state of module a
-console.log(store.getters.hello) //  get getters of module a
-store.dispatch('GET_SEX', {  //  dispatch action
-  sex: 'unknown'
-})
-```
-##### 路由懒加载
-```
-参考vue router里面的路由懒加载vite章节
-```
 ## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
+## Type Support For `.vue` Imports in TS
+
+Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+
+1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
+2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+
+You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).

@@ -1,13 +1,14 @@
-<script setup>
+<script setup lang="ts">
+import { menus, getList, Menu } from '../examples/example10';
 </script>
 
 <template>
-  <h1>Hello World</h1>
-  <router-link to="/">Home</router-link>
+  <div>
+    <Menu ref="menus" @on-click="getList"/>
+    <Global />
+  </div>
 </template>
 
-<style lang="scss" scoped>
-h1 {
-  color: $mainColor;
-}
+<style scoped>
+
 </style>
