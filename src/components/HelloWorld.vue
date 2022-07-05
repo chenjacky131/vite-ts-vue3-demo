@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { isDone } from '../examples/knowledeg1';
+import Test from './hRenderFunctionDemo'
 </script>
 
 <template>
   <div>
-    HelloWorld
+    <Test/>
   </div>
 </template>
 
 <style scoped>
-
+.my-div{
+  font-size: 18px;
+}
 </style>

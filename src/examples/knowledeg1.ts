@@ -173,3 +173,16 @@ interface Cat{
 }
 const tom1 = getCacheData<Cat>('tom');
 tom1.run();
+
+//  声明文件
+/*
+ * 以.d.ts结尾的文件，examples/demo1.d.ts
+ * declarer var jQuery:(selector: string) => any;
+ * 全局变量的声明文件主要有以下几种语法：
+ * declare var  //  声明全局变量
+ * declare function //  声明全局方法
+ * declare class  //  声明全局类
+ * declare enum //  声明全局枚举类型
+ * declare namespace  //  声明（含有子属性的）全局对象
+ * interface和type  //  声明全局类型
+*/ 
