@@ -1,7 +1,6 @@
 /**
  * 进阶
  */
-
 /**
  * 类型别名：类型别名用来给一个类型起个新名字
  *  type Name = string;
@@ -15,7 +14,6 @@
         }
     }
  */
-
 /**
  * 字符串字面量类型：字符串字面量类型用来约束取值只能是某几个字符串中的一个
  *  type EventNames = 'click' | 'scroll' | 'mousemove';
@@ -26,13 +24,11 @@
     handleEvent(document.getElementById('hello'), 'scroll');  // 没问题
     handleEvent(document.getElementById('world'), 'dblclick'); // 报错，event 不能为 'dblclick'
  */
-
 /**
  * 元组：数组合并了相同类型的变量而元组合并了不同类型的变量
  *  1.当直接对元组类型的变量进行初始化或者赋值的时候，需要提供所有元组类型中指定的项。
  *  2.当添加越界元素时，它的类型会被限制为元组中每个类型的联合类型
  */
-
 /**
  * 枚举：枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能由七天，颜色限定为红绿蓝等
  * enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat}
@@ -52,7 +48,6 @@
  *  b.用于编译时的检查，编译结果中会被删除
  *  c.同时使用declare和const也是可以的
  */
-
 /**
  * 类
  * 类的概念
@@ -119,7 +114,7 @@
       class Animal{
         static isAnimal(a){
             return a instanceof Animal
-        }        
+        }
       }
       let a = new Animal('tom')
       Animal.isAnimal(a);   //  true
@@ -327,3 +322,4 @@
             类的合并与接口的合并规则一致
  */
 export const test = 'test';
+//# sourceMappingURL=knowledeg2.js.map
