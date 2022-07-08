@@ -172,3 +172,157 @@
  * 类的类型
  * 给类加上TypeScript的类型很简单，与接口类似
  */
+/**
+ * 类与接口
+ *  1.类实现接口
+        interface ALarm{
+            alert():void;
+        }
+        class Door {}
+        class SecurityDoor extends Door implements ALarm{
+            alert(){
+                console.log('SecurityDoor alert')
+            }
+        }
+        class Car implements Alarm{
+            alert(){
+                console.log('Car alert')
+            }
+        }
+        一个类可以实现多个接口
+        interface Alarm{
+            alert():void;
+        }
+        interface Light{
+            lightOn():void;
+            lightOff():void;
+        }
+        class Car implements Alarm,Light{
+            alert(){
+                console.log('Car alert')
+            }
+            lightOn(){
+                console.log('Car light on')
+            }
+            lightOff(){
+                console.log('Car light off')
+            }
+        }
+    2.接口继承接口
+        interface Alarm{
+            alert():void;
+        }
+        interface LightableAlarm extend Alarm{
+            lightOn():void;
+            lightOff():void;
+        }
+    3.接口继承类
+        class Point{
+            x:number;
+            y:number;
+            constructor(x: number, y:number){
+                this.x = x
+                this.y = y
+            }
+            interface Point3d extend Point{
+                z: number
+            }
+        }
+        let point3d:Point3d = {x:1, y:2, z:3}
+        a.当我们在声明 class Point 时，除了会创建一个名为 Point 的类之外，同时也创建了一个
+        名为 Point 的类型（实例的类型）。
+        b.所以「接口继承类」和「接口继承接口」没有什么本质的区别。
+ */
+/**
+ * 泛型
+    1.简单的例子
+        function createArray<T>(length:number, value:T):Array<T>{
+            let result:T[] = []
+            for(let i = 0; i< length; i++){
+                result[i] = value;
+            }
+            return value
+        }
+        createArray<string>(3,'x'); //  ['x','x','x']，此处的string类型也可以不指定，让类型推论自动推算出来。
+    2.多个泛型参数
+        function swap<T,U>(tuple:[T,U]):[U,T]{
+            return [tuple[1], tuple[0]]
+        }
+        swap(7,'seven');    //  ['seven', 7]
+    3.泛型约束
+        interface LengthWise{
+            length: number
+        }
+        function loggingIdentity<T extends Length>(arg:T):T{
+            console.log(arg.length)
+            return arg;
+        }
+        多个类型参数之间也可以互相约束
+            function copyFields<T extends U, U>(target: T, source: U): T{
+                for(let id in source){
+                    target[id] = (<T>source)[id];
+                }
+                return target
+            }
+            let x = {a:1, b:2, c:3, d:4};
+            copyFields(x, {b:20, d: 20});
+    4.泛型接口
+            interface CreateArrayFunc<T>{
+                (length:number, value:T):Array<T>;
+            }
+            let createArray:CreateArrFunc<any>;
+            createArray = function<T>(length:number, value:T):Array<T>{
+                let result:T[] = []
+                for(let i = 0;i<length;i++){
+                    result[i] = value
+                }
+                return result
+            }
+            createArray(3,'x'); //  ['x', 'x', 'x']
+            注意，此时在使用泛型接口的时候，需要定义泛型的类型。
+    5.泛型类
+            class GenericNumber<T>{
+                zeroValue:T;
+                add:(x:T,y:T) => T
+            }
+            let myGenericNumber = new GenericNumber<number>()
+            myGenericNumber.zeroValue = 0;
+            myGenericNumber.add = function(x,y){ return x + y }
+    6.泛型参数的默认类型
+            function createArray<T = 'string'>(length:number, value:T):Array<T>{
+                let result:T[] = []
+                for(let i = 0;i<length;i++){
+                    result[i] = value
+                }
+                return value;
+            }
+ */
+/**
+ * 声明合并
+    1.函数的合并
+            function reverse(x:number):number;
+            function reverse(x:string):string;
+            function reverse(x:string | number):string | number{
+                if(typeof x === 'number'){
+                    return Number(x.toString().split('').reverse().join(''));
+                }else{
+                    return x.toString().split('').reverse().join('')
+                }
+            }
+    2.接口的合并
+            interface Alarm{
+                price:number
+            }
+            interface Alarm{
+                weight:number
+            }
+            相当于
+            interface Alarm{
+                price:number,
+                weight:number
+            }
+            a.注意，合并的属性的类型必须是唯一的
+            b.接口中方法的合并和函数的合并一样
+    3.类的合并
+            类的合并与接口的合并规则一致
+ */
